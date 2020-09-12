@@ -11,6 +11,7 @@ public class drive extends CommandBase {
 	private Joystick joystick;
 	
 	public drive(DrivebaseSubsystem drivebaseSubsystem, Joystick joystick) {
+		addRequirements(drivebaseSubsystem);
 		this.drivebaseSubsystem = drivebaseSubsystem;
 		this.joystick = joystick;
 	}
