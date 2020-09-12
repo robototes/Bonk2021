@@ -8,6 +8,7 @@
 package frc.team2412.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.team2412.robot.Commands.drive;
 
 /**
@@ -60,6 +61,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotPeriodic() {
+		CommandScheduler.getInstance().run();
 	}
 
 	/**
@@ -67,7 +69,6 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
-		RobotMap.robotContainer.drivebaseSubsystem.drive(RobotMap.oi.driverStick);
 	}
 
 	public void teleopInit() {
