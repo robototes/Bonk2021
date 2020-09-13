@@ -8,6 +8,8 @@
 package frc.team2412.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.team2412.robot.Commands.drive;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -19,6 +21,9 @@ import edu.wpi.first.wpilibj.TimedRobot;
 
 @SuppressWarnings("unused")
 public class Robot extends TimedRobot {
+
+	private RobotContainer m_robotContainer = RobotMap.robotContainer;
+	private OI m_OI = RobotMap.oi;
 
 	/**
 	 * This function is called once when autonomous is started
@@ -56,6 +61,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotPeriodic() {
+		CommandScheduler.getInstance().run();
 	}
 
 	/**
@@ -63,6 +69,9 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+	}
+
+	public void teleopInit() {
 	}
 
 	/**

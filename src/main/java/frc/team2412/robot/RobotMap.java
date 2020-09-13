@@ -6,7 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 //remember to declare robot container at the bottom of this class 
 public class RobotMap {
 
-	private static final int DRIVE_LEFT_MOTOR_ID = 0;
+	private static final int DRIVE_LEFT_MOTOR_ID = 1;
 
 	private static final int DRIVE_RIGHT_MOTOR_ID = 0;
 
