@@ -8,6 +8,8 @@
 package frc.team2412.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.simulation.BatterySim;
+import edu.wpi.first.wpilibj.simulation.RoboRioSim;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.team2412.robot.Commands.drive;
 
@@ -80,4 +82,11 @@ public class Robot extends TimedRobot {
 	@Override
 	public void testPeriodic() {
 	}
-}
+
+	@Override
+	public void simulationPeriodic() {
+		//m_robotContainer.drivebaseSubsystem.simulationPeriodic();
+		/*double drawCurrent = m_robotContainer.drivebaseSubsystem.getDrawnCurrentAmps();
+		double loadedVoltage = BatterySim.calculateDefaultBatteryLoadedVoltage(drawCurrent);
+		RoboRioSim.setVInVoltage(loadedVoltage);*/
+	}}
