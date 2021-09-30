@@ -7,11 +7,9 @@
 
 package frc.team2412.robot;
 
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.simulation.BatterySim;
-import edu.wpi.first.wpilibj.simulation.RoboRioSim;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.team2412.robot.Commands.drive;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,8 +22,23 @@ import frc.team2412.robot.Commands.drive;
 @SuppressWarnings("unused")
 public class Robot extends TimedRobot {
 
-	private RobotContainer m_robotContainer = RobotMap.robotContainer;
-	private OI m_OI = RobotMap.oi;
+	public RobotContainer robotContainer;
+
+	public OperatorInterface OI;
+
+	public Robot(){
+		robotContainer = new RobotContainer();
+		OI = new OperatorInterface(robotContainer);
+	}
+
+	/**
+	 * This function is run when the robot is first started up and should be used
+	 * for any initialization code.
+	 */
+	@Override
+	public void robotInit() {
+
+	}
 
 	/**
 	 * This function is called once when autonomous is started
@@ -43,13 +56,14 @@ public class Robot extends TimedRobot {
 
 	}
 
+	public void teleopInit() {
+	}
+
 	/**
-	 * This function is run when the robot is first started up and should be used
-	 * for any initialization code.
+	 * This function is called periodically during operator control.
 	 */
 	@Override
-	public void robotInit() {
-
+	public void teleopPeriodic() {
 	}
 
 	/**
@@ -66,15 +80,6 @@ public class Robot extends TimedRobot {
 		CommandScheduler.getInstance().run();
 	}
 
-	/**
-	 * This function is called periodically during operator control.
-	 */
-	@Override
-	public void teleopPeriodic() {
-	}
-
-	public void teleopInit() {
-	}
 
 	/**
 	 * This function is called periodically during test mode.
@@ -83,10 +88,10 @@ public class Robot extends TimedRobot {
 	public void testPeriodic() {
 	}
 
-	@Override
-	public void simulationPeriodic() {
-		//m_robotContainer.drivebaseSubsystem.simulationPeriodic();
-		/*double drawCurrent = m_robotContainer.drivebaseSubsystem.getDrawnCurrentAmps();
-		double loadedVoltage = BatterySim.calculateDefaultBatteryLoadedVoltage(drawCurrent);
-		RoboRioSim.setVInVoltage(loadedVoltage);*/
-	}}
+
+	//trying some stuff
+	public static void main(String... args) {
+		RobotBase.startRobot(Robot::new);
+	}
+
+}
