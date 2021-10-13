@@ -9,34 +9,28 @@ import frc.team2412.robot.util.Configurable;
 public class RobotMap {
 
 	/*
-	0   3
-	1   4
 	2   5
+	3   6
+	4   7
 	 */
 	public static WPI_TalonFX driveLeftMotor1, driveLeftMotor2, driveLeftMotor3;
 	public static WPI_TalonFX driveRightMotor1, driveRightMotor2, driveRightMotor3;
 
+
 	public static DoubleSolenoid driveShifter;
 
-	public static Configurable<WPI_TalonFX> leftConfig = ()->driveRightMotor1, rightConfig = ()->driveLeftMotor2;
 	
 	static{
 
-		driveLeftMotor1 = new WPI_TalonFX(0);
-		driveLeftMotor2 = new WPI_TalonFX(1);
-		driveLeftMotor3 = new WPI_TalonFX(2);
+		driveLeftMotor1 = new WPI_TalonFX(2);
+		driveLeftMotor2 = new WPI_TalonFX(3);
+		driveLeftMotor3 = new WPI_TalonFX(4);
 
-		driveRightMotor1 = new WPI_TalonFX(3);
-		driveRightMotor2 = new WPI_TalonFX(4);
-		driveRightMotor3 = new WPI_TalonFX(5);
+		driveRightMotor1 = new WPI_TalonFX(5);
+		driveRightMotor2 = new WPI_TalonFX(6);
+		driveRightMotor3 = new WPI_TalonFX(7);
 
-		driveRightMotor1.setInverted(true);
-		driveRightMotor2.setInverted(true);
-		driveLeftMotor3.setInverted(true);
 
-		leftConfig.apply(driveLeftMotor2::follow).apply(driveLeftMotor3::follow);
-
-		rightConfig.apply(driveRightMotor2::follow).apply(driveRightMotor3::follow);
 
 //		driveLeftMotor1 = new WPI_TalonFX(0);
 //		driveLeftMotor2 = new WPI_TalonFX(1);
@@ -51,7 +45,7 @@ public class RobotMap {
 //
 //		driveRightMotor1.setInverted(true);
 //		driveRightMotor2.setInverted(true);
-//		driveLeftMotor3.setInverted(true);
+//		driveLeftMotor3.setInverted(true);r
 //
 //		driveRightMotor2.follow(driveRightMotor1);
 //		driveLeftMotor3.follow(driveRightMotor1);

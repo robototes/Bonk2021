@@ -1,6 +1,9 @@
 package frc.team2412.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.Subsystem;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.Button;
 import frc.team2412.robot.commands.DriveCommand;
 import frc.team2412.robot.commands.ShiftCommand;
@@ -16,9 +19,9 @@ public class OperatorInterface {
 	// Joysticks
 	public XboxController controller = new XboxController(0);
 
-	public Button shiftButton = new Button(controller::getAButtonPressed);
+	public Button shiftButton = new Button(controller::getAButton);
 
-	public Button spinButton = new Button(controller::getBButtonPressed);
+	public Button spinButton = new Button(controller::getBButton);
 
 
 	// Constructor to set all of the commands and buttons
@@ -26,9 +29,9 @@ public class OperatorInterface {
 
 		robotContainer.drivebaseSubsystem.setDefaultCommand(new DriveCommand(robotContainer.drivebaseSubsystem, controller));
 
-		shiftButton.whileHeld(new ShiftCommand(robotContainer.drivebaseSubsystem));
+		shiftButton.whenHeld(new ShiftCommand(robotContainer.drivebaseSubsystem));
 
-		spinButton.whenPressed(new VictorySpinCommand(robotContainer.drivebaseSubsystem, 5));
+		//spinButton.whenPressed(new VictorySpinCommand(robotContainer.drivebaseSubsystem, 5));
 
 	}
 }

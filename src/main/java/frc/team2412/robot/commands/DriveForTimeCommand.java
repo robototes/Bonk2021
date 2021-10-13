@@ -17,7 +17,7 @@ public class DriveForTimeCommand extends CommandBase {
 
     @Override
     public void initialize() {
-        subsystem.drive(0.3, 0.3);
+        subsystem.drive(0.5, 0.5);
         timer.start();
     }
 

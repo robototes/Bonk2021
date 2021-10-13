@@ -54,7 +54,7 @@ public class DrivebaseSubsystem extends SubsystemBase implements Loggable {
 	private Configurable<TalonFXConfiguration> config = TalonFXConfiguration::new;
 
 
-	public Consumer<XboxController> current = this::arcadeDrive;
+	public Consumer<XboxController> current = this::dumbDrive;
 
 	@Config(name="Drive Control Type", numGridRows = 1)
 	public void setDriveMode(boolean arcade, boolean dumb, boolean gta){
@@ -63,21 +63,39 @@ public class DrivebaseSubsystem extends SubsystemBase implements Loggable {
 		else if(arcade) current = this::arcadeDrive;
 	}
 
-	public DrivebaseSubsystem(WPI_TalonFX rightMotor, WPI_TalonFX leftMotor, DoubleSolenoid shifter) {
+	public DrivebaseSubsystem(WPI_TalonFX rightMotor1, WPI_TalonFX rightMotor2, WPI_TalonFX rightMotor3,
+	 WPI_TalonFX leftMotor1, WPI_TalonFX leftMotor2, WPI_TalonFX leftMotor3, DoubleSolenoid shifter) {
 
 		config.apply(c->{
-			c.statorCurrLimit.currentLimit=5;
+			c.statorCurrLimit.currentLimit=40;
 			c.statorCurrLimit.triggerThresholdTime = 0.5;
 		});
 
-		config.apply(rightMotor::configAllSettings);
-		this.rightMotor = rightMotor;
-		this.rightMotor.setSelectedSensorPosition(0);
-		this.rightMotor.setInverted(true);
+		config.apply(rightMotor1::configAllSettings);
+		rightMotor1.setSelectedSensorPosition(0);
+		rightMotor1.setInverted(true);
+		config.apply(rightMotor2::configAllSettings);
+		rightMotor2.setSelectedSensorPosition(0);
+		rightMotor2.setInverted(true);
+		rightMotor2.follow(rightMotor1);
+		config.apply(rightMotor2::configAllSettings);
+		rightMotor2.setSelectedSensorPosition(0);
+		rightMotor3.setInverted(true);
+		rightMotor3.follow(rightMotor1);
 
-		config.apply(leftMotor::configAllSettings);
-		this.leftMotor = leftMotor;
-		this.leftMotor.setSelectedSensorPosition(0);
+		this.rightMotor = rightMotor1;
+
+
+		config.apply(leftMotor1::configAllSettings);
+		leftMotor1.setSelectedSensorPosition(0);
+		config.apply(leftMotor2::configAllSettings);
+		leftMotor2.setSelectedSensorPosition(0);
+		leftMotor2.follow(leftMotor1);
+		config.apply(leftMotor2::configAllSettings);
+		leftMotor2.setSelectedSensorPosition(0);
+		leftMotor3.follow(leftMotor1);
+
+		this.leftMotor = leftMotor1;
 
 		this.odometry = new DifferentialDriveOdometry(gyro.getRotation2d());
 
@@ -112,7 +130,7 @@ public class DrivebaseSubsystem extends SubsystemBase implements Loggable {
 		shifter.set(DoubleSolenoid.Value.kForward);
 	}
 	public void downShift(){
-		shifter.set(DoubleSolenoid.Value.kReverse);
+		shifter.set(DoubleSolenoid.Value.kReverse);		
 	}
 
 	public void updateOdometry() {

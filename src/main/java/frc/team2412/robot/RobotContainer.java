@@ -9,7 +9,8 @@ public class RobotContainer {
 
 	public RobotContainer() {
 
-		drivebaseSubsystem = new DrivebaseSubsystem(RobotMap.driveRightMotor1, RobotMap.driveLeftMotor1, RobotMap.driveShifter);
+		drivebaseSubsystem = new DrivebaseSubsystem(RobotMap.driveRightMotor1, RobotMap.driveRightMotor2, RobotMap.driveRightMotor3,
+		 RobotMap.driveLeftMotor1, RobotMap.driveLeftMotor2, RobotMap.driveLeftMotor3, RobotMap.driveShifter);
 
 	}
 }

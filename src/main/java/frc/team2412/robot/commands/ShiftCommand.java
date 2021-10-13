@@ -20,4 +20,5 @@ public class ShiftCommand extends CommandBase {
 	public void end(boolean interrupted) {
 		subsystem.downShift();
 	}
+
 }

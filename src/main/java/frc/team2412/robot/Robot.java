@@ -10,6 +10,7 @@ package frc.team2412.robot;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.team2412.robot.commands.DriveForTimeCommand;
 import io.github.oblarg.oblog.Logger;
 
 /**
@@ -46,7 +47,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
-
+		CommandScheduler.getInstance().schedule(new DriveForTimeCommand(robotContainer.drivebaseSubsystem, 3));
 	}
 
 	/**
