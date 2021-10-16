@@ -20,8 +20,12 @@ public class OperatorInterface {
 
 	public Button spinButton = new Button(controller::getBButtonPressed);
 
+	public Button climbUpButton = new Button(controller::getXButton);
 
-	// Constructor to set all of the commands and buttons
+	public Button climbDownButton = new Button(controller::getYButton);
+
+
+	//	 Constructor to set all of the commands and buttons
 	public OperatorInterface(RobotContainer robotContainer) {
 
 		robotContainer.drivebaseSubsystem.setDefaultCommand(new DriveCommand(robotContainer.drivebaseSubsystem, controller));
@@ -29,6 +33,9 @@ public class OperatorInterface {
 		shiftButton.whileHeld(new ShiftCommand(robotContainer.drivebaseSubsystem));
 
 		spinButton.whenPressed(new VictorySpinCommand(robotContainer.drivebaseSubsystem, 5));
+
+		climbUpButton.whenPressed(robotContainer.climbSubsystem::up).whenReleased(robotContainer.climbSubsystem::stop);
+		climbDownButton.whenPressed(robotContainer.climbSubsystem::down).whenReleased(robotContainer.climbSubsystem::stop);
 
 	}
 }
