@@ -17,8 +17,12 @@ public class VictorySpinCommand extends CommandBase {
 
     @Override
     public void initialize() {
-        subsystem.drive(timer.get()/time/2, -timer.get()/time/2);
         timer.start();
+    }
+    @Override
+    public void execute(){
+        if(timer.get()*2<time) subsystem.drive(timer.get()*2/time, -timer.get()*2/time);
+        else subsystem.drive((time-timer.get())*2/time, -(time-timer.get())*2/time);
     }
 
     @Override
